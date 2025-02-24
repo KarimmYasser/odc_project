@@ -52,23 +52,8 @@ class Assets {
   static const String paymentMethodsPaytm = 'assets/icons/payment_methods/paytm.png';
   static const String paymentMethodsSuccessfulPaymentIcon = 'assets/icons/payment_methods/successful_payment_icon.png';
   static const String paymentMethodsVisa = 'assets/icons/payment_methods/visa.png';
-  static const String urbanistUrbanistBlack = 'assets/fonts/urbanist/Urbanist-Black.ttf';
-  static const String urbanistUrbanistBlackItalic = 'assets/fonts/urbanist/Urbanist-BlackItalic.ttf';
-  static const String urbanistUrbanistBold = 'assets/fonts/urbanist/Urbanist-Bold.ttf';
-  static const String urbanistUrbanistBoldItalic = 'assets/fonts/urbanist/Urbanist-BoldItalic.ttf';
-  static const String urbanistUrbanistExtraBold = 'assets/fonts/urbanist/Urbanist-ExtraBold.ttf';
-  static const String urbanistUrbanistExtraBoldItalic = 'assets/fonts/urbanist/Urbanist-ExtraBoldItalic.ttf';
-  static const String urbanistUrbanistExtraLight = 'assets/fonts/urbanist/Urbanist-ExtraLight.ttf';
-  static const String urbanistUrbanistExtraLightItalic = 'assets/fonts/urbanist/Urbanist-ExtraLightItalic.ttf';
-  static const String urbanistUrbanistItalic = 'assets/fonts/urbanist/Urbanist-Italic.ttf';
-  static const String urbanistUrbanistLight = 'assets/fonts/urbanist/Urbanist-Light.ttf';
-  static const String urbanistUrbanistLightItalic = 'assets/fonts/urbanist/Urbanist-LightItalic.ttf';
-  static const String urbanistUrbanistMedium = 'assets/fonts/urbanist/Urbanist-Medium.ttf';
-  static const String urbanistUrbanistMediumItalic = 'assets/fonts/urbanist/Urbanist-MediumItalic.ttf';
-  static const String urbanistUrbanistRegular = 'assets/fonts/urbanist/Urbanist-Regular.ttf';
-  static const String urbanistUrbanistSemiBold = 'assets/fonts/urbanist/Urbanist-SemiBold.ttf';
-  static const String urbanistUrbanistSemiBoldItalic = 'assets/fonts/urbanist/Urbanist-SemiBoldItalic.ttf';
-  static const String urbanistUrbanistThin = 'assets/fonts/urbanist/Urbanist-Thin.ttf';
-  static const String urbanistUrbanistThinItalic = 'assets/fonts/urbanist/Urbanist-ThinItalic.ttf';
+  static const String svgsOnboardingImage1 = 'assets/images/svgs/onboarding_image1.svg';
+  static const String svgsOnboardingImage2 = 'assets/images/svgs/onboarding_image2.svg';
+  static const String svgsOnboardingImage3 = 'assets/images/svgs/onboarding_image3.svg';
 
 }

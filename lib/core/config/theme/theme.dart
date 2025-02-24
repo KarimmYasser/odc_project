@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../constants/colors.dart';
 import '../theme/widget_themes/appbar_theme.dart';
@@ -15,7 +16,7 @@ class TAppTheme {
 
   static ThemeData lightTheme = ThemeData(
     useMaterial3: true,
-    fontFamily: 'Urbanist',
+    fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
     disabledColor: TColors.grey,
     brightness: Brightness.light,
     primaryColor: TColors.primary,
@@ -32,7 +33,7 @@ class TAppTheme {
 
   static ThemeData darkTheme = ThemeData(
     useMaterial3: true,
-    fontFamily: 'Urbanist',
+    fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
     disabledColor: TColors.grey,
     brightness: Brightness.dark,
     primaryColor: TColors.primary,

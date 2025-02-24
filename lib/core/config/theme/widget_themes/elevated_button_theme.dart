@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../../../constants/colors.dart';
 import '../../../constants/sizes.dart';
 
@@ -18,7 +19,7 @@ class TElevatedButtonTheme {
       side: const BorderSide(color: TColors.primary),
       padding: const EdgeInsets.symmetric(vertical: TSizes.buttonHeight),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(TSizes.buttonRadius)),
-      textStyle: const TextStyle(fontSize: 16, color: TColors.textWhite, fontWeight: FontWeight.w500, fontFamily: 'Urbanist'),
+      textStyle: TextStyle(fontSize: 16, color: TColors.textWhite, fontWeight: FontWeight.w500, fontFamily: GoogleFonts.plusJakartaSans().fontFamily),
     ),
   );
 
@@ -33,7 +34,7 @@ class TElevatedButtonTheme {
       side: const BorderSide(color: TColors.primary),
       padding: const EdgeInsets.symmetric(vertical: TSizes.buttonHeight),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(TSizes.buttonRadius)),
-      textStyle: const TextStyle(fontSize: 16, color: TColors.textWhite, fontWeight: FontWeight.w600, fontFamily: 'Urbanist'),
+      textStyle: TextStyle(fontSize: 16, color: TColors.textWhite, fontWeight: FontWeight.w600, fontFamily: GoogleFonts.plusJakartaSans().fontFamily),
     ),
   );
 }

@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../generated/assets.dart';
+import '../../../../generated/assets.dart';
+import 'onboarding_screen.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
@@ -20,9 +21,9 @@ class SplashScreen extends StatelessWidget {
           home: Scaffold(
             backgroundColor: Colors.white,
             body: FlutterSplashScreen.fadeIn(
-              nextScreen: SplashScreen(),
+              nextScreen: OnboardingScreen(),
               backgroundColor: Colors.white,
-              duration: const Duration(seconds: 10),
+              duration: const Duration(seconds: 3),
               onInit: () async {
                 debugPrint("onInit");
               },
