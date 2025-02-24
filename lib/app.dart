@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:odc_project/features/intro/splash_screen.dart';
 
 import 'core/config/theme/theme.dart';
-import 'core/constants/colors.dart';
 import 'core/helpers/device/web_material_scroll.dart';
 
 class App extends StatelessWidget {
@@ -15,10 +15,7 @@ class App extends StatelessWidget {
       darkTheme: TAppTheme.darkTheme,
       debugShowCheckedModeBanner: false,
       scrollBehavior: MyCustomScrollBehavior(),
-      home: const Scaffold(
-        backgroundColor: TColors.primary,
-        body: Center(child: CircularProgressIndicator(color: Colors.white)),
-      ),
+      home: SplashScreen(),
     );
   }
 }
