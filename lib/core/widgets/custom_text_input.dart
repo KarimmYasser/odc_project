@@ -3,13 +3,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:odc_project/core/constants/colors.dart';
 
-class CustomTextInput extends StatelessWidget {
+class CustomTextInput extends StatefulWidget {
   final String hintText;
   final String labelText;
   final TextEditingController controller;
   final bool isPassword;
 
-  const CustomTextInput(
+  CustomTextInput(
       {super.key,
       required this.hintText,
       required this.labelText,
@@ -17,12 +17,19 @@ class CustomTextInput extends StatelessWidget {
       this.isPassword = false});
 
   @override
+  State<CustomTextInput> createState() => _CustomTextInputState();
+}
+
+class _CustomTextInputState extends State<CustomTextInput> {
+  bool isVisible = false;
+
+  @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          labelText,
+          widget.labelText,
           style: TextStyle(
             fontSize: 12.sp,
             color: TColors.textSecondary,
@@ -35,17 +42,28 @@ class CustomTextInput extends StatelessWidget {
           height: 8.h,
         ),
         TextField(
-          controller: controller,
-          obscureText: isPassword,
+          controller: widget.controller,
+          obscureText: isVisible,
           decoration: InputDecoration(
-            suffixIcon: isPassword
-                ? Icon(
-                    Icons.remove_red_eye_outlined,
-                    color: TColors.primary,
+            suffixIcon: widget.isPassword
+                ? IconButton(
+                    onPressed: () {
+                      isVisible = !isVisible;
+                      setState(() {});
+                    },
+                    icon: isVisible
+                        ? Icon(
+                            Icons.visibility_off_outlined,
+                            color: TColors.primary,
+                          )
+                        : Icon(
+                            Icons.remove_red_eye_outlined,
+                            color: TColors.primary,
+                          ),
                   )
                 : null,
             contentPadding: EdgeInsets.all(16.sp),
-            hintText: hintText,
+            hintText: widget.hintText,
             hintStyle: TextStyle(
               color: TColors.softGrey,
               fontWeight: FontWeight.w400,

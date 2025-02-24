@@ -29,7 +29,7 @@ class LoginScreen extends StatelessWidget {
               showDialog(
                   context: context,
                   builder: (context) =>
-                      Center(child: CircularProgressIndicator()));
+                      Center(child: CircularProgressIndicator(color: TColors.black,)));
             }
 
             if (state is AuthLoginSuccess) {
