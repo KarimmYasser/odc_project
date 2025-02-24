@@ -16,31 +16,28 @@ class SplashScreen extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (_, child) {
-        return MaterialApp(
-          debugShowCheckedModeBanner: false,
-          home: Scaffold(
+        return Scaffold(
+          backgroundColor: Colors.white,
+          body: FlutterSplashScreen.fadeIn(
+            nextScreen: OnboardingScreen(),
             backgroundColor: Colors.white,
-            body: FlutterSplashScreen.fadeIn(
-              nextScreen: OnboardingScreen(),
-              backgroundColor: Colors.white,
-              duration: const Duration(seconds: 3),
-              onInit: () async {
-                debugPrint("onInit");
-              },
-              onEnd: () async {
-                debugPrint("onEnd");
-              },
-              childWidget: Center(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    SvgPicture.asset(Assets.logosZaladaLogo),
-                    SizedBox(height: 34.h),
-                    SvgPicture.asset(Assets.logosZalada),
-                  ],
-                ),
+            duration: const Duration(seconds: 3),
+            onInit: () async {
+              debugPrint("onInit");
+            },
+            onEnd: () async {
+              debugPrint("onEnd");
+            },
+            childWidget: Center(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SvgPicture.asset(Assets.logosZaladaLogo),
+                  SizedBox(height: 34.h),
+                  SvgPicture.asset(Assets.logosZalada),
+                ],
               ),
             ),
           ),

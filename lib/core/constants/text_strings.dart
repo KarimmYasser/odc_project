@@ -21,6 +21,8 @@ class TTexts {
   static const String submit = "Submit";
   static const String appName = "T Store";
   static const String tContinue = "Continue";
+  static const String login = "Login";
+  static const String register = "Register";
 
 
   // -- OnBoarding Texts
@@ -38,15 +40,18 @@ class TTexts {
   static const String lastName = "Last Name";
   static const String email = "E-Mail";
   static const String password = "Password";
-  static const String newPassword = "New Password";
+  static const String confirmPassword = "Confirm Password";
   static const String username = "Username";
   static const String phoneNo = "Phone Number";
   static const String rememberMe = "Remember Me";
-  static const String forgetPassword = "Forget Password?";
+  static const String forgetPassword = "Forget password?";
   static const String signIn = "Sign In";
-  static const String createAccount = "Create Account";
+  static const String createAccount = "Don't have an account? ";
+  static const String newAccount = "Create your new account";
   static const String orSignInWith = "or sign in with";
-  static const String orSignUpWith = "or sign up with";
+  static const String orContinueWith = "or continue with";
+  static const String continueWithFacebook = "Continue with facebook";
+  static const String continueWithGoogle = "Continue with google";
   static const String iAgreeTo = "I agree to";
   static const String privacyPolicy = "Privacy Policy";
   static const String termsOfUse = "Terms of use";
@@ -56,9 +61,8 @@ class TTexts {
 
 
   // -- Authentication Headings
-  static const String loginTitle = "Welcome back,";
-  static const String loginSubTitle = "Discover Limitless Choices and Unmatched Convenience.";
-  static const String signupTitle = "Let’s create your account";
+  static const String loginTitle = "Login to your account.";
+  static const String registerTitle = "Create your new account.";
   static const String forgetPasswordTitle = "Forget password";
   static const String forgetPasswordSubTitle = "Don’t worry sometimes people can forget too, enter your email and we will send you a password reset link.";
   static const String changeYourPasswordTitle = "Password Reset Email Sent";

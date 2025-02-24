@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:odc_project/core/constants/text_strings.dart';
+import 'package:odc_project/features/auth/presentation/login_screen.dart';
 import 'package:odc_project/generated/assets.dart';
 
 import '../../../../core/constants/colors.dart';
@@ -96,6 +97,11 @@ class OnboardingScreen extends StatelessWidget {
                       onTap: () {
                         if (_pageController.positions.isNotEmpty) {
                           if (_pageController.page == 2) {
+                            Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => LoginScreen(),
+                                ));
                           } else {
                             _pageController.nextPage(
                                 duration: Duration(milliseconds: 100),
