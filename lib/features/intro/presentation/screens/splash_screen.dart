@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
+import '../../../../core/config/theme/theme.dart';
 import '../../../../generated/assets.dart';
 import 'onboarding_screen.dart';
 
@@ -16,28 +17,34 @@ class SplashScreen extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (_, child) {
-        return Scaffold(
-          backgroundColor: Colors.white,
-          body: FlutterSplashScreen.fadeIn(
-            nextScreen: OnboardingScreen(),
+        return MaterialApp(
+          themeMode: ThemeMode.light,
+          theme: TAppTheme.lightTheme,
+          darkTheme: TAppTheme.darkTheme,
+          debugShowCheckedModeBanner: false,
+          home: Scaffold(
             backgroundColor: Colors.white,
-            duration: const Duration(seconds: 3),
-            onInit: () async {
-              debugPrint("onInit");
-            },
-            onEnd: () async {
-              debugPrint("onEnd");
-            },
-            childWidget: Center(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  SvgPicture.asset(Assets.logosZaladaLogo),
-                  SizedBox(height: 34.h),
-                  SvgPicture.asset(Assets.logosZalada),
-                ],
+            body: FlutterSplashScreen.fadeIn(
+              nextScreen: OnboardingScreen(),
+              backgroundColor: Colors.white,
+              duration: const Duration(seconds: 3),
+              onInit: () async {
+                debugPrint("onInit");
+              },
+              onEnd: () async {
+                debugPrint("onEnd");
+              },
+              childWidget: Center(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    SvgPicture.asset(Assets.logosZaladaLogo),
+                    SizedBox(height: 34.h),
+                    SvgPicture.asset(Assets.logosZalada),
+                  ],
+                ),
               ),
             ),
           ),

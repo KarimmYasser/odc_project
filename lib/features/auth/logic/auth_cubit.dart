@@ -11,6 +11,10 @@ class AuthCubit extends Cubit<AuthState> {
 
   void login(String userName, String password) {
     emit(AuthLoginLoading());
+    if (userName.isEmpty || password.isEmpty) {
+      emit(AuthLoginFailure("Fill all fields are required"));
+      return;
+    }
     Map<String, String> data = {'username': "mor_2314", 'password': "83r5^_"};
     DioHelper.postData(url: Endpoints.loginEndPoint, data: data).then((value) {
       if (value.statusCode == 200) {
@@ -26,7 +30,7 @@ class AuthCubit extends Cubit<AuthState> {
   void register(String userName, String password, String confirmPassword) {
     emit(AuthRegisterLoading());
     if (userName.isEmpty || password.isEmpty || confirmPassword.isEmpty) {
-      emit(AuthRegisterFailure("Register failed , please try again"));
+      emit(AuthRegisterFailure("Fill all fields are required"));
       return;
     }
     Map<String, String> data = {

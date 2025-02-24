@@ -25,6 +25,14 @@ class TColors {
   // Background Container colors
   static const Color lightContainer = Color(0xFFF6F6F6);
   static Color darkContainer = TColors.white.withAlpha(25);
+  static const LinearGradient top = LinearGradient(
+    colors: [
+      Color(0xFFFDA56C),
+      Color(0xFFFD6C8A),
+    ],
+  );
+  static const Color mid = Color(0xFFFEB5AE);
+  static const Color bot = Color(0xFFFBCCDC);
 
   // Button colors
   static const Color buttonPrimary = Color(0xFF4b68ff);

@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:odc_project/core/constants/colors.dart';
 import 'package:odc_project/features/auth/presentation/register_screen.dart';
+import 'package:odc_project/features/home/presentation/home_screen.dart';
 
 import '../../../core/constants/text_strings.dart';
 import '../../../core/widgets/custom_button.dart';
@@ -28,14 +29,14 @@ class LoginScreen extends StatelessWidget {
             if (state is AuthLoginLoading) {
               showDialog(
                   context: context,
-                  builder: (context) =>
-                      Center(child: CircularProgressIndicator(color: TColors.black,)));
+                  builder: (context) => Center(
+                      child: CircularProgressIndicator(color: TColors.black)));
             }
 
             if (state is AuthLoginSuccess) {
               Navigator.pop(context);
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => Placeholder()));
+              Navigator.pushReplacement(context,
+                  MaterialPageRoute(builder: (context) => HomeScreen()));
               ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                 content: Text("Success Login"),
               ));
