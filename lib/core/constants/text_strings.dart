@@ -88,4 +88,6 @@ class TTexts {
   static const String location = "Location";
   static const String hotDeals = "Hot deals🔥";
   static const String categories = 'Categories';
+  static const String wishlist = 'Your Wishlist';
+
 }

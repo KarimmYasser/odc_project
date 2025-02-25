@@ -6,10 +6,10 @@ import 'package:odc_project/features/home/presentation/widgets/grid_view_product
 import 'package:odc_project/features/home/presentation/widgets/horizontal_products_list.dart';
 import 'package:odc_project/features/home/presentation/widgets/tab_button.dart';
 
-import '../../../core/constants/colors.dart';
-import '../../../core/constants/text_strings.dart';
-import '../../../generated/assets.dart';
-import '../logic/home_cubit.dart';
+import '../../../../core/constants/colors.dart';
+import '../../../../core/constants/text_strings.dart';
+import '../../../../generated/assets.dart';
+import '../../logic/home_cubit.dart';
 
 class HomeBody extends StatelessWidget {
   const HomeBody({
@@ -223,7 +223,7 @@ class HomeBody extends StatelessWidget {
                           ? buildLoading()
                           : state is HomeProductsLoaded &&
                                   context.read<HomeCubit>().products.isNotEmpty
-                              ? GridViewProductsList(isEvent: true)
+                              ? GridViewProductsList(isEvent: false)
                               : buildError();
                     },
                   ),

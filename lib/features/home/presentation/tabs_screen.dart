@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:odc_project/features/home/presentation/browse_page.dart';
 import 'package:odc_project/features/home/presentation/home_page.dart';
+import 'package:odc_project/features/home/presentation/wishlist_page.dart';
 
 import '../../../core/constants/colors.dart';
 
@@ -16,8 +18,8 @@ class _TabsScreenState extends State<TabsScreen> {
   int _currentIndex = 0;
   final List<Widget> _pages = [
     HomePage(),
-    HomePage(),
-    HomePage(),
+    BrowsePage(),
+    WishlistPage(),
     HomePage(),
     HomePage(),
   ];
@@ -25,6 +27,7 @@ class _TabsScreenState extends State<TabsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: TColors.white,
       body: _pages[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
@@ -50,7 +53,7 @@ class _TabsScreenState extends State<TabsScreen> {
           BottomNavigationBarItem(
             icon: Icon(Iconsax.home),
             label: 'Home',
-            activeIcon: Icon(Iconsax.home),
+            activeIcon: Icon(Iconsax.home1),
           ),
           BottomNavigationBarItem(
             icon: Icon(Iconsax.search_normal),
