@@ -33,6 +33,7 @@ class TColors {
   );
   static const Color mid = Color(0xFFFEB5AE);
   static const Color bot = Color(0xFFFBCCDC);
+  static const Color event = Color(0xFFFF9C44);
 
   // Button colors
   static const Color buttonPrimary = Color(0xFF4b68ff);

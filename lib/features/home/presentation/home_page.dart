@@ -6,13 +6,15 @@ import 'package:odc_project/features/home/presentation/home_body.dart';
 
 import '../../../core/constants/colors.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+class HomePage extends StatelessWidget {
+  const HomePage({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
+    return SingleChildScrollView(
+      child: Stack(
         children: [
           Positioned(
             top: -1031.h,

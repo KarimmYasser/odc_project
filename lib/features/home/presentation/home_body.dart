@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:odc_project/features/home/presentation/widgets/grid_view_products_list.dart';
+import 'package:odc_project/features/home/presentation/widgets/horizontal_products_list.dart';
+import 'package:odc_project/features/home/presentation/widgets/tab_button.dart';
 
 import '../../../core/constants/colors.dart';
 import '../../../core/constants/text_strings.dart';
 import '../../../generated/assets.dart';
+import '../logic/home_cubit.dart';
 
 class HomeBody extends StatelessWidget {
   const HomeBody({
@@ -90,7 +95,8 @@ class HomeBody extends StatelessWidget {
                 ),
               ],
             ),
-            SingleChildScrollView(
+            BlocProvider(
+              create: (context) => HomeCubit()..getProducts(),
               child: Column(
                 children: [
                   SizedBox(height: 24.h),
@@ -146,6 +152,81 @@ class HomeBody extends StatelessWidget {
                       ),
                     ],
                   ),
+                  SizedBox(height: 14.h),
+                  BlocConsumer<HomeCubit, HomeState>(
+                    listener: (context, state) {
+                      // TODO: implement listener
+                    },
+                    builder: (context, state) {
+                      return state is HomeProductsLoading
+                          ? buildLoading()
+                          : state is HomeProductsLoaded &&
+                                  context.read<HomeCubit>().products.isNotEmpty
+                              ? HorizontalProductsList(isEvent: true)
+                              : buildError();
+                    },
+                  ),
+                  SizedBox(height: 28.h),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        TTexts.categories,
+                        style: TextStyle(
+                          fontWeight: FontWeight.w600,
+                          fontSize: 18.sp,
+                          letterSpacing: 0,
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 16.h),
+                  SizedBox(
+                    height: 44.h,
+                    child: ListView(
+                      shrinkWrap: true,
+                      scrollDirection: Axis.horizontal,
+                      children: [
+                        TabButton(
+                          title: 'All',
+                          isSelected: true,
+                          icon: Icons.category,
+                        ),
+                        SizedBox(width: 12.w),
+                        TabButton(
+                          title: 'Laptop',
+                          isSelected: false,
+                          icon: Icons.laptop,
+                        ),
+                        SizedBox(width: 12.w),
+                        TabButton(
+                          title: 'Accessories',
+                          isSelected: false,
+                          icon: Icons.headphones,
+                        ),
+                        SizedBox(width: 12.w),
+                        TabButton(
+                          title: 'Phones',
+                          isSelected: false,
+                          icon: Icons.phone_android_sharp,
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: 16.h),
+                  BlocConsumer<HomeCubit, HomeState>(
+                    listener: (context, state) {
+                      // TODO: implement listener
+                    },
+                    builder: (context, state) {
+                      return state is HomeProductsLoading
+                          ? buildLoading()
+                          : state is HomeProductsLoaded &&
+                                  context.read<HomeCubit>().products.isNotEmpty
+                              ? GridViewProductsList(isEvent: true)
+                              : buildError();
+                    },
+                  ),
                 ],
               ),
             ),
@@ -154,4 +235,16 @@ class HomeBody extends StatelessWidget {
       ),
     );
   }
+}
+
+Widget buildLoading() {
+  return Center(
+    child: CircularProgressIndicator(),
+  );
+}
+
+Widget buildError() {
+  return Center(
+    child: Text("Error"),
+  );
 }
