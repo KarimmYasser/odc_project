@@ -8,8 +8,15 @@ import 'package:odc_project/features/home/presentation/widgets/grid_view_product
 
 import '../logic/home_cubit.dart';
 
-class BrowsePage extends StatelessWidget {
+class BrowsePage extends StatefulWidget {
   const BrowsePage({super.key});
+
+  @override
+  State<BrowsePage> createState() => _BrowsePageState();
+}
+
+class _BrowsePageState extends State<BrowsePage> {
+  final controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -24,11 +31,14 @@ class BrowsePage extends StatelessWidget {
                 CustomTextInput(
                   hintText: 'Search laptop, headset..',
                   labelText: '',
-                  controller: TextEditingController(),
+                  controller: controller,
                   icon: Icon(
                     Iconsax.search_normal,
                     color: TColors.primary,
                   ),
+                  onChanged: (_) {
+                    setState(() {});
+                  },
                 ),
                 SizedBox(height: 33.h),
                 BlocConsumer<HomeCubit, HomeState>(
@@ -40,7 +50,10 @@ class BrowsePage extends StatelessWidget {
                         ? buildLoading()
                         : state is HomeProductsLoaded &&
                                 context.read<HomeCubit>().products.isNotEmpty
-                            ? GridViewProductsList(isEvent: false)
+                            ? GridViewProductsList(
+                                isEvent: false,
+                                searchFilter: controller.text,
+                              )
                             : buildError();
                   },
                 ),

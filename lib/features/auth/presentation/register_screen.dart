@@ -72,8 +72,8 @@ class RegisterScreen extends StatelessWidget {
                     ),
                     SizedBox(height: 32.h),
                     CustomTextInput(
-                      hintText: TTexts.username,
-                      labelText: TTexts.username,
+                      hintText: TTexts.email,
+                      labelText: TTexts.email,
                       controller: userNameController,
                     ),
                     SizedBox(height: 24.h),

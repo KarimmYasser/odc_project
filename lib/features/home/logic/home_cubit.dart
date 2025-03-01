@@ -14,6 +14,8 @@ class HomeCubit extends Cubit<HomeState> {
 
   List<ProductModel> products = [];
 
+  ProductModel? product;
+
   void getUserData() {
     emit(HomeUserLoading());
     DioHelper.getData(url: Endpoints.currentUserDataEndpoint).then((value) {
@@ -44,5 +46,21 @@ class HomeCubit extends Cubit<HomeState> {
       print(error.toString());
       emit(HomeProductsError(error.toString()));
     });
+  }
+
+  void getSingleProduct(int id) {
+    product = null;
+    emit(ProductDetailsLoading());
+    DioHelper.getData(url: "${Endpoints.productByIdEndpoint}$id").then((value) {
+      if (value.statusCode == 200 && value.data != null) {
+        product = ProductModel.fromJson(value.data);
+        emit(ProductDetailsLoaded());
+      } else {
+        emit(ProductDetailsError("Error"));
+      }
+    }).catchError((error) {
+      emit(ProductDetailsError(error.toString()));
+    });
+
   }
 }

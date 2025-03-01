@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:odc_project/features/cart/presentation/cart_screen.dart';
 import 'package:odc_project/features/home/presentation/browse_page.dart';
 import 'package:odc_project/features/home/presentation/home_page.dart';
 import 'package:odc_project/features/home/presentation/wishlist_page.dart';
+import 'package:odc_project/features/profile/presentation/profile_screen.dart';
 
 import '../../../core/constants/colors.dart';
 
@@ -20,8 +22,8 @@ class _TabsScreenState extends State<TabsScreen> {
     HomePage(),
     BrowsePage(),
     WishlistPage(),
-    HomePage(),
-    HomePage(),
+    CartScreen(),
+    ProfileScreen(),
   ];
 
   @override

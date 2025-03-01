@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:odc_project/features/home/presentation/widgets/product_card.dart';
 
 import '../../logic/home_cubit.dart';
+import '../product_details_screen.dart';
 
 class HorizontalProductsList extends StatelessWidget {
   const HorizontalProductsList({
@@ -27,7 +28,15 @@ class HorizontalProductsList extends StatelessWidget {
           price: context.read<HomeCubit>().products[index].price!.toString(),
           event: 'NEW ARRIVAL',
           isEvent: isEvent,
-          onTap: () {},
+          onTap: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => ProductDetailsScreen(
+                  id: context.read<HomeCubit>().products[index].id!,
+                ),
+              ),
+            );
+          },
         ),
       ),
     );

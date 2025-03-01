@@ -9,14 +9,17 @@ class CustomTextInput extends StatefulWidget {
   final TextEditingController controller;
   final bool isPassword;
   final Icon? icon;
+  final void Function(String)? onChanged;
 
-  CustomTextInput(
-      {super.key,
-      required this.hintText,
-      required this.labelText,
-      required this.controller,
-      this.isPassword = false,
-      this.icon});
+  const CustomTextInput({
+    super.key,
+    required this.hintText,
+    required this.labelText,
+    required this.controller,
+    this.isPassword = false,
+    this.icon,
+    this.onChanged,
+  });
 
   @override
   State<CustomTextInput> createState() => _CustomTextInputState();
@@ -46,6 +49,7 @@ class _CustomTextInputState extends State<CustomTextInput> {
         ),
         TextField(
           controller: widget.controller,
+          onChanged: widget.onChanged,
           obscureText: isVisible,
           decoration: InputDecoration(
             prefixIcon: widget.icon,

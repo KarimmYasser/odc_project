@@ -54,6 +54,7 @@ class Assets {
   static const String paymentMethodsPaytm = 'assets/icons/payment_methods/paytm.png';
   static const String paymentMethodsSuccessfulPaymentIcon = 'assets/icons/payment_methods/successful_payment_icon.png';
   static const String paymentMethodsVisa = 'assets/icons/payment_methods/visa.png';
+  static const String svgsCart = 'assets/images/svgs/cart.svg';
   static const String svgsHomeContainer = 'assets/images/svgs/home_container.svg';
   static const String svgsOnboardingImage1 = 'assets/images/svgs/onboarding_image1.svg';
   static const String svgsOnboardingImage2 = 'assets/images/svgs/onboarding_image2.svg';

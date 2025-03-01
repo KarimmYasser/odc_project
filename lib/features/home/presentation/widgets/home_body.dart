@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:odc_project/features/home/presentation/notfications_screen.dart';
 import 'package:odc_project/features/home/presentation/widgets/grid_view_products_list.dart';
 import 'package:odc_project/features/home/presentation/widgets/horizontal_products_list.dart';
 import 'package:odc_project/features/home/presentation/widgets/tab_button.dart';
@@ -71,7 +72,10 @@ class HomeBody extends StatelessWidget {
                   backgroundColor: Colors.white24,
                   child: IconButton(
                     padding: EdgeInsets.zero,
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(
+                          builder: (context) => NotificationScreen()));
+                    },
                     icon: Icon(
                       Icons.notifications,
                       size: 24.h,
@@ -96,7 +100,9 @@ class HomeBody extends StatelessWidget {
               ],
             ),
             BlocProvider(
-              create: (context) => HomeCubit()..getProducts(),
+              create: (context) =>
+              HomeCubit()
+                ..getProducts(),
               child: Column(
                 children: [
                   SizedBox(height: 24.h),
@@ -120,7 +126,7 @@ class HomeBody extends StatelessWidget {
                         ),
                       ),
                       Positioned(
-                        top: 12.h,
+                        top: 22.h,
                         right: 6.w,
                         child: Image.asset(
                           Assets.contentHeadphone,
@@ -161,9 +167,12 @@ class HomeBody extends StatelessWidget {
                       return state is HomeProductsLoading
                           ? buildLoading()
                           : state is HomeProductsLoaded &&
-                                  context.read<HomeCubit>().products.isNotEmpty
-                              ? HorizontalProductsList(isEvent: true)
-                              : buildError();
+                          context
+                              .read<HomeCubit>()
+                              .products
+                              .isNotEmpty
+                          ? HorizontalProductsList(isEvent: true)
+                          : buildError();
                     },
                   ),
                   SizedBox(height: 28.h),
@@ -222,9 +231,12 @@ class HomeBody extends StatelessWidget {
                       return state is HomeProductsLoading
                           ? buildLoading()
                           : state is HomeProductsLoaded &&
-                                  context.read<HomeCubit>().products.isNotEmpty
-                              ? GridViewProductsList(isEvent: false)
-                              : buildError();
+                          context
+                              .read<HomeCubit>()
+                              .products
+                              .isNotEmpty
+                          ? GridViewProductsList(isEvent: true)
+                          : buildError();
                     },
                   ),
                 ],

@@ -29,6 +29,7 @@ class ProductCard extends StatelessWidget {
         width: 160.w,
         height: 230.h,
         child: Card(
+          color: TColors.white,
           elevation: 0,
           child: Padding(
             padding: EdgeInsets.symmetric(

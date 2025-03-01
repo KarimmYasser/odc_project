@@ -94,8 +94,13 @@ class LoginScreen extends StatelessWidget {
                   CustomButton(
                       label: TTexts.login,
                       onPressed: () {
-                        context.read<AuthCubit>().login(
-                            userNameController.text, passwordController.text);
+                        Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(builder: (context) => TabsScreen()),
+                          (route) => false,
+                        );
+                        // context.read<AuthCubit>().login(
+                        //     userNameController.text, passwordController.text);
                       }),
                   SizedBox(height: 24.h),
                   Row(
