@@ -137,6 +137,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.0"
+  expandable_text:
+    dependency: "direct main"
+    description:
+      name: expandable_text
+      sha256: "7d03ea48af6987b20ece232678b744862aa3250d4a71e2aaf1e4af90015d76b1"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.3.0"
   fake_async:
     dependency: transitive
     description:
@@ -198,6 +206,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.17"
+  flutter_switch:
+    dependency: "direct main"
+    description:
+      name: flutter_switch
+      sha256: b91477f926bba135d2d203d7b24367492662d8d9c3aa6adb960b14c1087d3c41
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.3.2"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -541,6 +557,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.5.5"
+  sqflite_common_ffi:
+    dependency: "direct main"
+    description:
+      name: sqflite_common_ffi
+      sha256: "1f3ef3888d3bfbb47785cc1dda0dc7dd7ebd8c1955d32a9e8e9dae1e38d1c4c1"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.3.5"
   sqflite_darwin:
     dependency: transitive
     description:
@@ -557,6 +581,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.4.0"
+  sqlite3:
+    dependency: transitive
+    description:
+      name: sqlite3
+      sha256: "32b632dda27d664f85520093ed6f735ae5c49b5b75345afb8b19411bc59bb53d"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.7.4"
   stack_trace:
     dependency: transitive
     description:

@@ -36,6 +36,9 @@ class Assets {
   static const String contentDefaultImagesIcon = 'assets/images/content/default-images-icon.png';
   static const String contentHeadphone = 'assets/images/content/headphone.png';
   static const String contentHomeContainer = 'assets/images/content/home_container.png';
+  static const String contentJt = 'assets/images/content/jt.png';
+  static const String contentMap = 'assets/images/content/map.png';
+  static const String contentPin = 'assets/images/content/pin.png';
   static const String contentTinyColorPalette = 'assets/images/content/tiny-color-palette.png';
   static const String contentTinyManMaintainingAWorkLifeBalance = 'assets/images/content/tiny-man-maintaining-a-work-life-balance.png';
   static const String contentUser = 'assets/images/content/user.jpg';
@@ -56,8 +59,11 @@ class Assets {
   static const String paymentMethodsVisa = 'assets/icons/payment_methods/visa.png';
   static const String svgsCart = 'assets/images/svgs/cart.svg';
   static const String svgsHomeContainer = 'assets/images/svgs/home_container.svg';
+  static const String svgsJt = 'assets/images/svgs/jt.svg';
   static const String svgsOnboardingImage1 = 'assets/images/svgs/onboarding_image1.svg';
   static const String svgsOnboardingImage2 = 'assets/images/svgs/onboarding_image2.svg';
   static const String svgsOnboardingImage3 = 'assets/images/svgs/onboarding_image3.svg';
+  static const String svgsOtp = 'assets/images/svgs/otp.svg';
+  static const String svgsSuccess = 'assets/images/svgs/success.svg';
 
 }

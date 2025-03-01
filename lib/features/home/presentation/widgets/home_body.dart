@@ -73,8 +73,10 @@ class HomeBody extends StatelessWidget {
                   child: IconButton(
                     padding: EdgeInsets.zero,
                     onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(
-                          builder: (context) => NotificationScreen()));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => NotificationScreen()));
                     },
                     icon: Icon(
                       Icons.notifications,
@@ -100,9 +102,7 @@ class HomeBody extends StatelessWidget {
               ],
             ),
             BlocProvider(
-              create: (context) =>
-              HomeCubit()
-                ..getProducts(),
+              create: (context) => HomeCubit()..getProducts(),
               child: Column(
                 children: [
                   SizedBox(height: 24.h),
@@ -167,12 +167,11 @@ class HomeBody extends StatelessWidget {
                       return state is HomeProductsLoading
                           ? buildLoading()
                           : state is HomeProductsLoaded &&
-                          context
-                              .read<HomeCubit>()
-                              .products
-                              .isNotEmpty
-                          ? HorizontalProductsList(isEvent: true)
-                          : buildError();
+                                  context.read<HomeCubit>().products.isNotEmpty
+                              ? HorizontalProductsList(
+                                  isEvent: true,
+                                  products: context.read<HomeCubit>().products)
+                              : buildError();
                     },
                   ),
                   SizedBox(height: 28.h),
@@ -231,12 +230,9 @@ class HomeBody extends StatelessWidget {
                       return state is HomeProductsLoading
                           ? buildLoading()
                           : state is HomeProductsLoaded &&
-                          context
-                              .read<HomeCubit>()
-                              .products
-                              .isNotEmpty
-                          ? GridViewProductsList(isEvent: true)
-                          : buildError();
+                                  context.read<HomeCubit>().products.isNotEmpty
+                              ? GridViewProductsList(isEvent: true)
+                              : buildError();
                     },
                   ),
                 ],

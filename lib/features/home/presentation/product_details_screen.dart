@@ -1,168 +1,290 @@
-import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
+import 'package:expandable_text/expandable_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:odc_project/features/home/logic/home_cubit.dart';
+import 'package:odc_project/features/home/presentation/widgets/checkout_button.dart';
+import 'package:odc_project/features/home/presentation/widgets/horizontal_products_list.dart';
 
-import '../../../core/db/local_db/local_db_helper.dart';
-import '../logic/home_cubit.dart';
+import '../../../core/constants/colors.dart';
+import '../../../core/widgets/custom_button.dart';
+import '../data/model/product_model.dart';
 
 class ProductDetailsScreen extends StatelessWidget {
-  const ProductDetailsScreen({super.key, required this.id});
+  final ProductModel product;
+  final List<ProductModel> products;
 
-  final int id;
+  const ProductDetailsScreen(
+      {super.key, required this.product, required this.products});
+
+  List<ProductModel> getRelatedProducts(
+      List<ProductModel> products, String category) {
+    return products.where((product) => product.category == category).toList();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => HomeCubit()..getSingleProduct(id),
-      child: BlocConsumer<HomeCubit, HomeState>(
-        listener: (context, state) {
-          // TODO: implement listener
-        },
-        builder: (context, state) {
-          return Scaffold(
-            backgroundColor: Colors.white,
-            appBar: AppBar(
-              title: Text("Product Details"),
+    getRelatedProducts(products, product.category!);
+    num priceBefore = product.price! + 20.0;
+    return Scaffold(
+      backgroundColor: TColors.white,
+      appBar: AppBar(
+        backgroundColor: TColors.white,
+        actions: [IconButton(onPressed: () {}, icon: Icon(Icons.favorite))],
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(
+              width: double.infinity,
+              child: Column(
+                children: [
+                  Container(
+                    width: 84.w,
+                    height: 21.h,
+                    padding: EdgeInsets.symmetric(vertical: 4.h),
+                    decoration: ShapeDecoration(
+                        color: Color(0xFFFF9C44),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30.r))),
+                    child: Text(
+                      'NEW ARRIVAL',
+                      textAlign: TextAlign.center,
+                      style: GoogleFonts.plusJakartaSans(
+                        color: Colors.white,
+                        fontSize: 10.sp,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 40.w, vertical: 8.h),
+                    child: Text(
+                      product.title!,
+                      textAlign: TextAlign.center,
+                      style: GoogleFonts.plusJakartaSans(
+                        color: TColors.textPrimary,
+                        fontSize: 24.sp,
+                        fontWeight: FontWeight.w600,
+                        height: 1.25.h,
+                      ),
+                    ),
+                  ),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        '\$ ${product.price!.toString()}',
+                        style: GoogleFonts.plusJakartaSans(
+                          fontSize: 20.sp,
+                          color: Color(0xFF1B5EC9),
+                          fontWeight: FontWeight.w700,
+                          height: 1.20.h,
+                        ),
+                      ),
+                      Text(
+                        ' \$ $priceBefore',
+                        style: GoogleFonts.plusJakartaSans(
+                          color: Color(0xFF76777C),
+                          fontSize: 12.sp,
+                          fontWeight: FontWeight.w400,
+                          decoration: TextDecoration.lineThrough,
+                          height: 1.33.h,
+                        ),
+                      )
+                    ],
+                  ),
+                  SizedBox(
+                    height: 13.h,
+                  ),
+                  SizedBox(
+                      width: 303.w,
+                      height: 285.h,
+                      child: Image.network(
+                        product.image!,
+                        fit: BoxFit.contain,
+                      )),
+                  SizedBox(
+                    height: 12.h,
+                  ),
+                  Text(
+                    'Space Grey',
+                    style: GoogleFonts.plusJakartaSans(
+                      color: Color(0xFF959699),
+                      fontSize: 12.sp,
+                      fontWeight: FontWeight.w600,
+                      height: 1.33.h,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 12.h,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      ProductColorsOption(
+                        color: const Color(0xFFA6A5AA),
+                        isSelected: true,
+                      ),
+                      SizedBox(
+                        width: 20.w,
+                      ),
+                      ProductColorsOption(
+                        color: const Color(0xFFE8E8EA),
+                      ),
+                      SizedBox(
+                        width: 20.w,
+                      ),
+                      ProductColorsOption(
+                        color: const Color(0xFFF2E0CC),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 22.h,
+                  ),
+                  Container(
+                    width: 375,
+                    height: 4,
+                    decoration: const BoxDecoration(color: Color(0xFFF0F1F5)),
+                  ),
+                  SizedBox(
+                    height: 24.h,
+                  ),
+                ],
+              ),
             ),
-            body: ConditionalBuilder(
-              condition: context.watch<HomeCubit>().product != null,
-              builder: (context) {
-                final product = context.watch<HomeCubit>().product!;
-                return ListView(
-                  padding: EdgeInsets.all(16.0),
+            BlocProvider(
+              create: (context) => HomeCubit(),
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20.w),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      product.title!,
-                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                      textAlign: TextAlign.center,
+                      'Product Description',
+                      style: GoogleFonts.plusJakartaSans(
+                        fontSize: 18.sp,
+                        color: TColors.textPrimary,
+                        fontWeight: FontWeight.w600,
+                        height: 1.44.h,
+                      ),
                     ),
-                    SizedBox(height: 10),
-                    Text(
-                      "\$${product.price}",
-                      style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.blue),
-                      textAlign: TextAlign.center,
+                    SizedBox(
+                      height: 12.h,
                     ),
-                    SizedBox(height: 20),
-                    Image.network(product.image!, height: 200),
-                    SizedBox(height: 10),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        CircleAvatar(backgroundColor: Colors.grey, radius: 10),
-                        SizedBox(width: 10),
-                        CircleAvatar(backgroundColor: Colors.black, radius: 10),
-                        SizedBox(width: 10),
-                        CircleAvatar(backgroundColor: Colors.brown, radius: 10),
-                      ],
-                    ),
-                    SizedBox(height: 20),
-                    Text(
-                      "Product Description",
-                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                    ),
-                    SizedBox(height: 5),
-                    Text(
+                    ExpandableText(
                       product.description!,
-                      style: TextStyle(fontSize: 14, color: Colors.grey[700]),
+                      style: GoogleFonts.plusJakartaSans(
+                        color: TColors.textSecondary,
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.w400,
+                        height: 1.43.h,
+                      ),
+                      maxLines: 3,
+                      expandText: 'Read More',
+                      collapseText: 'Show Less',
+                      linkColor: Color(0xFF1B5EC9),
+                      linkStyle: GoogleFonts.plusJakartaSans(
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.w700,
+                        height: 1.43.h,
+                      ),
                     ),
-                    SizedBox(height: 20),
+                    SizedBox(
+                      height: 52.h,
+                    ),
                     Text(
-                      "Product Related",
-                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                    ),
-                    SizedBox(height: 10),
-                    GridView.builder(
-                      shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        childAspectRatio: 0.8,
-                        crossAxisSpacing: 10,
-                        mainAxisSpacing: 10,
+                      'Product Related',
+                      style: GoogleFonts.plusJakartaSans(
+                        fontSize: 18.sp,
+                        color: TColors.textPrimary,
+                        fontWeight: FontWeight.w600,
+                        height: 1.44.h,
                       ),
-                      itemCount: 2,
-                      itemBuilder: (context, index) {
-                        return Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: Colors.white,
-                            boxShadow: [
-                              BoxShadow(
-                                  color: Colors.grey.withOpacity(0.2),
-                                  blurRadius: 5,
-                                  spreadRadius: 2),
-                            ],
-                          ),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Icon(Icons.devices, size: 50),
-                              SizedBox(height: 10),
-                              Text(
-                                index == 0
-                                    ? "iPad Pro 2020 11”\n128GB"
-                                    : "Apple Mac Mini M1\nChip 2020",
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    fontSize: 14, fontWeight: FontWeight.bold),
-                              ),
-                              SizedBox(height: 5),
-                              Text(
-                                index == 0 ? "\$1029" : "\$878",
-                                style: TextStyle(
-                                    fontSize: 14,
-                                    color: Colors.blue,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            ],
-                          ),
-                        );
-                      },
                     ),
-                    SizedBox(height: 20),
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.blue,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10)),
-                        padding: EdgeInsets.symmetric(vertical: 15),
+                    SizedBox(
+                      height: 16.h,
+                    ),
+                    HorizontalProductsList(
+                        products:
+                            getRelatedProducts(products, product.category!)),
+                    SizedBox(
+                      height: 13.h,
+                    ),
+                    Container(
+                      width: double.infinity,
+                      height: 112.h,
+                      decoration: BoxDecoration(
+                          color: TColors.white,
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(24.r),
+                            topRight: Radius.circular(24.r),
+                          )),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          CheckoutButton(product: product),
+                          SizedBox(
+                              width: 267.w,
+                              child: CustomButton(
+                                  label: 'Checkout', onPressed: () {})),
+                        ],
                       ),
-                      onPressed: () {},
-                      child: Text("Checkout",
-                          style: TextStyle(fontSize: 16, color: Colors.white)),
-                    ),
+                    )
                   ],
-                );
-              },
-              fallback: (context) {
-                return Center(
-                  child: CircularProgressIndicator(),
-                );
-              },
-            ),
-            floatingActionButton: FloatingActionButton(
-              onPressed: () async {
-                try {
-                  var data = context.read<HomeCubit>().product;
-                  await SQLHelper.add(
-                      data!.id.toString(),
-                      data.title!,
-                      data.description ?? "",
-                      data.image!,
-                      1,
-                      data.price!.toDouble());
-                } catch (e) {
-                  print(e);
-                }
-              },
-              child: Icon(Icons.add_shopping_cart_sharp),
-            ),
-          );
-        },
+                ),
+              ),
+            )
+          ],
+        ),
       ),
     );
+  }
+}
+
+// ignore: must_be_immutable
+class ProductColorsOption extends StatelessWidget {
+  Color color;
+  bool isSelected;
+
+  ProductColorsOption(
+      {super.key, required this.color, this.isSelected = false});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        width: 40.w,
+        height: 40.w,
+        decoration: ShapeDecoration(
+          color: Colors.white,
+          shape: OvalBorder(
+            side: isSelected
+                ? BorderSide(
+                    width: 3,
+                    color: color,
+                  )
+                : BorderSide.none,
+          ),
+        ),
+        child: Center(
+          child: Container(
+            width: 32.w,
+            height: 32.w,
+            decoration: ShapeDecoration(
+                color: color,
+                shape: const OvalBorder(
+                  side: BorderSide(
+                    width: 3,
+                    strokeAlign: BorderSide.strokeAlignCenter,
+                    color: Colors.white,
+                  ),
+                )),
+          ),
+        ));
   }
 }

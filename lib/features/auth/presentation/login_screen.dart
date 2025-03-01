@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:odc_project/core/constants/colors.dart';
+import 'package:odc_project/features/auth/presentation/OTP_screen.dart';
 import 'package:odc_project/features/auth/presentation/register_screen.dart';
 import 'package:odc_project/features/home/presentation/tabs_screen.dart';
 
@@ -81,13 +82,21 @@ class LoginScreen extends StatelessWidget {
                     isPassword: true,
                   ),
                   SizedBox(height: 24.h),
-                  Text(
-                    TTexts.forgetPassword,
-                    style: TextStyle(
-                      color: TColors.textPrimary,
-                      fontWeight: FontWeight.w400,
-                      fontSize: 16.sp,
-                      letterSpacing: 0,
+                  InkWell(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => OTPScreen()));
+                    },
+                    child: Text(
+                      TTexts.forgetPassword,
+                      style: TextStyle(
+                        color: TColors.textPrimary,
+                        fontWeight: FontWeight.w400,
+                        fontSize: 16.sp,
+                        letterSpacing: 0,
+                      ),
                     ),
                   ),
                   SizedBox(height: 24.h),

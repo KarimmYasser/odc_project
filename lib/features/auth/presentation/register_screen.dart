@@ -95,9 +95,10 @@ class RegisterScreen extends StatelessWidget {
                         label: TTexts.register,
                         onPressed: () {
                           context.read<AuthCubit>().register(
-                              userNameController.text,
-                              passwordController.text,
-                              confirmController.text,);
+                                userNameController.text,
+                                passwordController.text,
+                                confirmController.text,
+                              );
                         }),
                     SizedBox(height: 24.h),
                     Row(
@@ -203,6 +204,36 @@ class RegisterScreen extends StatelessWidget {
                           ],
                         ),
                       ),
+                    ),
+                    SizedBox(height: 16.h),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          TTexts.createAccount,
+                          style: TextStyle(
+                            color: TColors.textSecondary,
+                            fontSize: 16.sp,
+                            fontWeight: FontWeight.w400,
+                            letterSpacing: 0,
+                          ),
+                        ),
+                        InkWell(
+                          onTap: () {
+                            Navigator.pop(context);
+                          },
+                          child: Text(
+                            TTexts.register,
+                            style: TextStyle(
+                              color: TColors.hyperText,
+                              fontSize: 16.sp,
+                              fontWeight: FontWeight.w600,
+                              letterSpacing: 0,
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ),
